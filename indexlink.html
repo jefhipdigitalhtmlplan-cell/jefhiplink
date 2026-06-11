@@ -1,81 +1,94 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- CETTE BALISE EST CRUCIALE POUR LE MOBILE -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jefhiplink/ - Espace Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jefhiplink/ - Hub Digital</title>
     <style>
-        /* --- STYLE PRO & DARK MODE --- */
-        :root { --main: #007bff; --bg: #050505; --card: #121212; --text: #ffffff; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .wrapper { width: 100%; max-width: 480px; text-align: center; }
+        /* RESET & MOBILE FIRST */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        /* HEADER (Logo & Bio) */
-        .header img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--main); margin-bottom: 15px; }
-        .bio { font-size: 0.9rem; color: #aaa; margin-bottom: 25px; }
+        :root {
+            --primary: #3b82f6;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            padding: 15px; 
+            display: flex; 
+            justify-content: center; 
+            min-height: 100vh;
+        }
+
+        .app-container { 
+            width: 100%; 
+            max-width: 480px; /* Taille optimale pour mobile */
+        }
+
+        /* PROFIL */
+        .profile-section { text-align: center; margin-bottom: 2rem; }
+        .avatar { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary); background: #334155; margin: 0 auto 1rem; }
+
+        /* BOUTONS NAVIGATION */
+        .nav-btn { display: block; width: 100%; padding: 16px; margin: 12px 0; background: var(--surface); border: 1px solid #334155; color: white; text-align: center; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 16px; }
+
+        /* BOUTIQUE GRID */
+        .shop-title { margin: 2rem 0 1rem; padding-left: 10px; border-left: 4px solid var(--primary); }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .product-card { background: var(--surface); padding: 10px; border-radius: 12px; text-align: center; }
+        .product-img { width: 100%; height: 80px; background: #334155; border-radius: 8px; margin-bottom: 8px; }
+        .price { color: var(--primary); font-weight: bold; display: block; margin: 5px 0; }
         
-        /* BOUTONS (Liens classiques) */
-        .link-btn { display: block; width: 100%; padding: 18px; margin: 12px 0; background: var(--card); border: 1px solid #333; color: white; text-decoration: none; border-radius: 12px; transition: 0.3s; }
-        .link-btn:hover { background: var(--main); border-color: var(--main); transform: scale(1.02); }
-
-        /* BOUTIQUE (Grille Produit) */
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-        .product-card { background: var(--card); padding: 10px; border-radius: 12px; border: 1px solid #333; }
-        .product-img { width: 100%; height: 100px; background: #222; border-radius: 8px; margin-bottom: 10px; }
-        .price { font-weight: bold; color: var(--main); display: block; margin: 5px 0; }
-        .btn-shop { background: var(--main); border: none; padding: 10px; width: 100%; color: white; border-radius: 6px; cursor: pointer; }
-
-        /* FOOTER (Branding & Forfaits) */
-        .footer-section { margin-top: 60px; padding-top: 30px; border-top: 2px solid #222; }
-        .upgrade-btn { background: #1a1a1a; border: 1px solid var(--main); color: var(--main); }
+        /* FOOTER FORFAITS */
+        .footer-cta { margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; text-align: center; }
+        .tier-btn { background: transparent; border: 1px solid var(--primary); color: var(--primary); margin: 10px 0; }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <!-- Profil -->
-    <header class="header">
-        <div style="background:#222; width:120px; height:120px; border-radius:50%; margin:0 auto;"></div>
+<div class="app-container">
+    <div class="profile-section">
+        <div class="avatar"></div>
         <h1>Nom Entreprise</h1>
-        <p class="bio">Bienvenue sur mon espace digital. Découvrez mes services et produits exclusifs.</p>
-    </header>
+    </div>
 
-    <!-- Liste de Liens -->
-    <a href="#" class="link-btn">Mon Site Web</a>
-    <a href="#" class="link-btn">Mon Portfolio</a>
-    <a href="#" class="link-btn">Contactez-nous</a>
+    <nav>
+        <a href="#" class="nav-btn">Site Web Officiel</a>
+        <a href="#" class="nav-btn">WhatsApp Pro</a>
+    </nav>
 
-    <!-- Boutique (Générée par JS) -->
-    <h2>Boutique</h2>
-    <div class="product-grid" id="product-container"></div>
+    <h2 class="shop-title">Boutique</h2>
+    <div class="grid" id="product-root"></div>
 
-    <!-- Pied de Page & Forfaits -->
-    <footer class="footer-section">
+    <footer class="footer-cta">
         <h3>Jefhiplink/</h3>
-        <p>Passer au niveau supérieur :</p>
-        <a href="https://www.paypal.com/..." class="link-btn upgrade-btn">Forfait Basic (9$)</a>
-        <a href="https://www.paypal.com/..." class="link-btn upgrade-btn">Forfait Pro (29$)</a>
-        <a href="https://www.paypal.com/..." class="link-btn upgrade-btn">Forfait Elite (49$)</a>
-        <p style="font-size: 0.7rem; color: #555;">Paiement sécurisé via : Jefhipdigitalhtmlplan@gmail.com</p>
+        <p>Mise à niveau :</p>
+        <a href="#" class="nav-btn tier-btn">Basic - 9 $</a>
+        <a href="#" class="nav-btn tier-btn">Pro - 29 $</a>
+        <a href="#" class="nav-btn tier-btn">Elite - 49 $</a>
     </footer>
 </div>
 
 <script>
-    // Liste de tes produits (Ajoute autant d'objets que tu veux ici)
     const products = [
-        { name: "Produit A", price: "19.99 $", url: "#" },
-        { name: "Produit B", price: "29.99 $", url: "#" },
-        { name: "Produit C", price: "49.99 $", url: "#" },
-        { name: "Produit D", price: "99.99 $", url: "#" }
+        { name: "Produit 1", price: "19.99 $", link: "#" },
+        { name: "Produit 2", price: "29.99 $", link: "#" }
     ];
 
-    const container = document.getElementById('product-container');
-    container.innerHTML = products.map(p => `
+    const root = document.getElementById('product-root');
+    root.innerHTML = products.map(item => `
         <div class="product-card">
             <div class="product-img"></div>
-            <p>${p.name}</p>
-            <span class="price">${p.price}</span>
-            <button class="btn-shop" onclick="window.location.href='${p.url}'">AJOUTER AU PANIER</button>
+            <div style="font-size:0.8rem;">${item.name}</div>
+            <span class="price">${item.price}</span>
+            <a href="${item.link}" class="nav-btn" style="padding:8px; margin:5px 0; font-size:0.8rem;">AJOUTER AU PANIER</a>
         </div>
     `).join('');
 </script>
