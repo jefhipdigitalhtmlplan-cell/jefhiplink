@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jefhiplink/ - Hub Digital</title>
+    <style>
+        /* CSS PRO & ANIMATIONS */
+        :root {
+            --primary: #3b82f6;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+        }
+
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .app-container { width: 100%; max-width: 480px; }
+
+        /* HEADER */
+        .profile-section { text-align: center; margin-bottom: 2rem; }
+        .avatar { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary); background: #334155; margin-bottom: 1rem; transition: transform 0.3s ease; }
+        .avatar:hover { transform: scale(1.05); }
+
+        /* BOUTONS NAVIGATION */
+        .nav-btn { display: block; width: 100%; padding: 16px; margin: 10px 0; background: var(--surface); border: 1px solid #334155; color: white; text-align: center; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .nav-btn:hover { background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+
+        /* BOUTIQUE GRID */
+        .shop-title { margin: 2rem 0 1rem; border-left: 4px solid var(--primary); padding-left: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .product-card { background: var(--surface); padding: 12px; border-radius: 12px; transition: transform 0.2s; }
+        .product-img { width: 100%; height: 100px; background: #334155; border-radius: 8px; margin-bottom: 10px; }
+        .price { color: var(--primary); font-weight: bold; font-size: 1.1rem; display: block; margin: 5px 0; }
+        
+        /* FOOTER FORFAITS */
+        .footer-cta { margin-top: 40px; padding: 25px; border-top: 1px solid #334155; text-align: center; }
+        .tier-btn { background: transparent; border: 1px solid var(--primary); color: var(--primary); margin: 8px 0; }
+        .tier-btn:hover { background: var(--primary); color: white; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="profile-section">
+        <div class="avatar"></div>
+        <h1>Nom Entreprise</h1>
+        <p>Solution digitale premium.</p>
+    </div>
+
+    <nav>
+        <a href="#" class="nav-btn">Site Web Officiel</a>
+        <a href="#" class="nav-btn">WhatsApp Pro</a>
+    </nav>
+
+    <h2 class="shop-title">Boutique</h2>
+    <div class="grid" id="product-root"></div>
+
+    <footer class="footer-cta">
+        <h3>Jefhiplink/</h3>
+        <p>Choisissez votre plan :</p>
+        <a href="#" class="nav-btn tier-btn">Plan Basic - 9 $</a>
+        <a href="#" class="nav-btn tier-btn">Plan Pro - 29 $</a>
+        <a href="#" class="nav-btn tier-btn">Plan Elite - 49 $</a>
+    </footer>
+</div>
+
+<script>
+    // DATA MAPPING (Ajoute tes produits ici)
+    const products = [
+        { name: "Digital Template", price: "19.99 $", link: "#" },
+        { name: "SaaS Access", price: "29.99 $", link: "#" }
+    ];
+
+    const root = document.getElementById('product-root');
+    root.innerHTML = products.map(item => `
+        <div class="product-card">
+            <div class="product-img"></div>
+            <div style="font-size:0.8rem; font-weight:bold;">${item.name}</div>
+            <span class="price">${item.price}</span>
+            <a href="${item.link}" class="nav-btn" style="padding:8px; font-size:0.8rem;">AJOUTER AU PANIER</a>
+        </div>
+    `).join('');
+</script>
+
+</body>
+</html>
